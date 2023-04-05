@@ -3,14 +3,6 @@ if (not status) then return end
 
 bufferline.setup {
   options = {
-    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
-    -- NOTE: this plugin is designed with this icon in mind,
-    -- and so changing this is NOT recommended, this is intended
-    -- as an escape hatch for people who cannot bear it for whatever reason
     indicator = {
         icon = '▎', -- this should be omitted if indicator style is not 'icon'
         style = 'icon',
@@ -85,17 +77,17 @@ bufferline.setup {
     duplicate_selected = {
       fg = { attribute = "fg", highlight = "TabLineSel" },
       bg = { attribute = "bg", highlight = "TabLineSel" },
-      italic = true,
+      italic = false,
     },
     duplicate_visible = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
-      italic = true,
+      italic = false,
     },
     duplicate = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
-      italic = true,
+      italic = false,
     },
 
     modified = {
@@ -119,14 +111,20 @@ bufferline.setup {
       fg = { attribute = "bg", highlight = "Normal" },
       bg = { attribute = "bg", highlight = "Normal" },
     },
-    -- separator_visible = {
-    --   fg = {attribute='bg',highlight='TabLine'},
-    --   bg = {attribute='bg',highlight='TabLine'}
-    --   },
+    separator_visible = {
+     fg = {attribute='bg',highlight='TabLine'},
+       bg = {attribute='bg',highlight='TabLine'}
+      },
     indicator_selected = {
       fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
       bg = { attribute = "bg", highlight = "Normal" },
     },
+    buffer_selected = { italic = false },
+	diagnostic_selected = { italic = false },
+	hint_selected = { italic = false },
+	pick_selected = { italic = false },
+	pick_visible = { italic = false },
+	pick = { italic = false },
   },
 }
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})

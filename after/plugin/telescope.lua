@@ -2,7 +2,6 @@
 require'telescope'.load_extension('make')
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
-local fb_actions = require "telescope".extensions.file_browser.actions
 
 vim.keymap.set('n', ';f', builtin.find_files, {})
 vim.keymap.set('n', ';d', builtin.git_files, {})
@@ -42,6 +41,8 @@ vim.keymap.set("n", "sf", function()
   })
 end)
 
+local fb_actions = require "telescope".extensions.file_browser.actions
+
 require('telescope').setup({
     --shorten_path=true,
     defaults = {
@@ -71,7 +72,7 @@ require('telescope').setup({
               },
               ["n"] = {
                   -- your custom normal mode mappings
-                  ["N"] = fb_actions.create,
+                  ["c"] = fb_actions.create,
                   ["h"] = fb_actions.goto_parent_dir,
                   ["/"] = function()
                       vim.cmd('startinsert')

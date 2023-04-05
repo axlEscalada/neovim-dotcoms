@@ -6,7 +6,7 @@ lsp.ensure_installed({
  'tsserver',
  'eslint',
  'rust_analyzer',
- 'sumenko_lua'
+ --'sumenko_lua'
 })
 
 local cmp = require('cmp')

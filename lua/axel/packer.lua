@@ -91,8 +91,18 @@ return require('packer').startup(function(use)
   --lsp
   use 'mfussenegger/nvim-dap'
   use 'mfussenegger/nvim-jdtls'
+--nvim tree
+use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+        'nvim-tree/nvim-web-devicons', -- optional
+    },
+    config = function()
+        require("nvim-tree").setup {}
+    end
+}
 
-  --chatgpt
+    --chatgpt
     use({
       "jackMort/ChatGPT.nvim",
       config = function()
