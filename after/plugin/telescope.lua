@@ -2,7 +2,11 @@
 require'telescope'.load_extension('make')
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
-
+local themes = require('telescope.themes')
+--:lua require('telescope.builtin').find_files({defaults = { file_ignore_patterns = {"%.class"} } })
+--vim.keymap.set('n', ';f', function()
+  --builtin.find_files({ defaults = { file_ignore_patterns = {"%.class"} } })
+--end)
 vim.keymap.set('n', ';f', builtin.find_files, {})
 vim.keymap.set('n', ';d', builtin.git_files, {})
 -- Rip grep commands
@@ -10,6 +14,8 @@ vim.keymap.set('n', ';g', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set('n', ';r', builtin.live_grep, {})
+vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+
 -- Buffer
 vim.keymap.set('n', '\\\\', builtin.live_grep, {})
 
@@ -47,10 +53,10 @@ require('telescope').setup({
     --shorten_path=true,
     defaults = {
         path_display = { "smart" },
-       layout_strategy = 'horizontal',
-       layout_config = {
+        layout_strategy = 'horizontal',
+        layout_config = {
            width = 165,
-       },
+        },
      },
     pickers = {
         lsp_references = {

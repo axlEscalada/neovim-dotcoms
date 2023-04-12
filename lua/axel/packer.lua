@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
   }
   use('nvim-telescope/telescope-file-browser.nvim')
 
+  -- Themes
   use({
 	  'rose-pine/neovim',
 	  as = 'rose-pine',
@@ -22,6 +23,9 @@ return require('packer').startup(function(use)
 	  end
   })
 
+    use "rebelot/kanagawa.nvim"
+    use 'navarasu/onedark.nvim'
+  ------------------------------------
   use({
       "folke/trouble.nvim",
       config = function()
@@ -34,7 +38,6 @@ return require('packer').startup(function(use)
       end
   })
 
-
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
   use("nvim-treesitter/playground")
   use("theprimeagen/harpoon")
@@ -42,29 +45,6 @@ return require('packer').startup(function(use)
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
   use("nvim-treesitter/nvim-treesitter-context");
-
-  use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v1.x',
-	  requires = {
-		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},
-		  {'williamboman/mason.nvim'},
-		  {'williamboman/mason-lspconfig.nvim'},
-
-		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},
-		  {'hrsh7th/cmp-buffer'},
-		  {'hrsh7th/cmp-path'},
-		  {'saadparwaiz1/cmp_luasnip'},
-		  {'hrsh7th/cmp-nvim-lsp'},
-		  {'hrsh7th/cmp-nvim-lua'},
-
-		  -- Snippets
-		  {'L3MON4D3/LuaSnip'},
-		  {'rafamadriz/friendly-snippets'},
-	  }
-  }
 
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
@@ -88,19 +68,34 @@ return require('packer').startup(function(use)
 
   use 'akinsho/nvim-bufferline.lua'
 
+  --Mason
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/mason-lspconfig.nvim'
+
   --lsp
-  use 'mfussenegger/nvim-dap'
-  use 'mfussenegger/nvim-jdtls'
---nvim tree
-use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-        'nvim-tree/nvim-web-devicons', -- optional
-    },
-    config = function()
-        require("nvim-tree").setup {}
-    end
-}
+    use 'mfussenegger/nvim-dap' --debugging
+    use 'rcarriga/cmp-dap' --debugging
+    use 'mfussenegger/nvim-jdtls'
+    use 'nvim-lua/plenary.nvim'
+    use 'hrsh7th/nvim-cmp'
+    use	'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+	use 'saadparwaiz1/cmp_luasnip'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
+
+    --nvim tree
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
+        config = function()
+            require("nvim-tree").setup {}
+        end
+    }
 
     --chatgpt
     use({
@@ -115,5 +110,26 @@ use {
       }
   })
 
+  --Comment plugin
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
+  -- Markdown plugin
+  -- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+    --Indent blankline (like intellij line)
+    use "lukas-reineke/indent-blankline.nvim"
+
+    --Tabhula use to "tab-out" auto-closed parenthesis, braces, etc
+    use 'lilibyte/tabhula.nvim'
 end)
 

@@ -1,5 +1,6 @@
 require("axel.set")
 require("axel.remap")
+--require("axel.java_keymaps")
 
 local augroup = vim.api.nvim_create_augroup
 local ThePrimeagenGroup = augroup('ThePrimeagen', {})
@@ -32,6 +33,9 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+
 local has = vim.fn.has
 local is_mac = has "macunix"
 local is_win = has "win32"
@@ -40,3 +44,7 @@ local is_wsl = has "wsl"
 if is_mac then
   require('axel.macos')
 end
+
+
+--SET KEYWORDS
+--vim.opt.iskeyword:append("-")
